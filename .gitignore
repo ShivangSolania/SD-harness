@@ -9,12 +9,6 @@ tui.json
 harness.jsonc
 harness.jsonc.*.tmp
 
-# Live credentials — NEVER commit
-antigravity-accounts.json
-antigravity-accounts.json.*.tmp
-antigravity-signature-cache.json
-antigravity-logs/
-
 # Themes (user-installed)
 themes
 
