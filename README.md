@@ -70,13 +70,13 @@ export HARNESS_HOME=~/.config/harness
 
 ```bash
 # Atomic fix (single-file, single patch)
-opencode "Fix the typo in README.md line 42."
+"Fix the typo in README.md line 42."
 
 # Feature (multi-step, planned)
-opencode "Add a /healthz endpoint returning version + uptime as JSON."
+"Add a /healthz endpoint returning version + uptime as JSON."
 
 # Architectural (interview + architect gate)
-opencode "Swap the primary datastore from Postgres to MongoDB."
+"Swap the primary datastore from Postgres to MongoDB."
 ```
 
 ## Pipeline
