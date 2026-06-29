@@ -1,0 +1,8 @@
+{
+  "framework_benchmarks": {
+    "target_hit_rate": 0.95,
+    "surgical_patch_accuracy": 1.0,
+    "allowed_hallucination_index": 0.0
+  },
+  "session_telemetry_summary": []
+}

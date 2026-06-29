@@ -1,0 +1,48 @@
+# Code review workflow for /review-code command.
+# Consumed by commands/review-code.md against the current `git diff`.
+# Each stage runs as a separate agent invocation. Gates are hard stops.
+
+name: code-review
+version: 1
+
+stages:
+  - id: collect-diff
+    runner: shell
+    command: git diff --no-color
+    output: diff_text
+
+  - id: quality
+    agent: reviewer
+    input:
+      patches: $stages.collect-diff.diff_text
+    gate:
+      on_output_contains: "ISSUES:"
+      action: stop
+      reason: "Static review flagged issues"
+
+  - id: security
+    agent: security
+    input:
+      patches: $stages.collect-diff.diff_text
+    gate:
+      on_output_contains: "ALERT:"
+      action: stop
+      reason: "Security scan flagged issues"
+
+  - id: architecture
+    agent: architect
+    input:
+      proposed_changes: $stages.collect-diff.diff_text
+      architecture_map: memory/project/architecture.md
+    gate:
+      on_output_contains: "<REJECT>"
+      action: stop
+      reason: "Architect rejected the change"
+
+output:
+  format: markdown
+  sections:
+    - quality_verdict
+    - security_verdict
+    - architecture_verdict
+    - combined_recommendation

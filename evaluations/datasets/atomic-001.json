@@ -1,0 +1,11 @@
+{
+  "id": "atomic-001",
+  "tier": "ATOMIC",
+  "title": "Replace deprecated fs.exists with fs.access",
+  "input": "Replace the deprecated `fs.exists` call in `src/io.js` with `fs.access`.",
+  "expected_clarifier_output": "<ATOMIC>\nobjective: replace fs.exists with fs.access in src/io.js",
+  "expected_files_touched": ["src/io.js"],
+  "expected_agents_invoked": ["clarifier", "coder", "reviewer", "security", "tester", "documentation"],
+  "expected_retries": 0,
+  "verifier": "node -e \"require('./src/io.js'); process.exit(0)\""
+}

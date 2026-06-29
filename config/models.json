@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "defaultModel": "claude-sonnet-4",
+  "defaultFallback": "gemini-3-flash",
+  "agentModelMap": {
+    "clarifier":        "gemini-3-flash",
+    "orchestrator":     "claude-sonnet-4",
+    "researcher":       "claude-sonnet-4",
+    "hermes-reasoner":  "deepseek-ai/DeepSeek-R1-0528",
+    "planner":          "claude-sonnet-4",
+    "architect":        "claude-opus-4",
+    "coder":            "claude-sonnet-4",
+    "reviewer":         "claude-sonnet-4",
+    "security":         "claude-sonnet-4",
+    "tester":           "claude-sonnet-4",
+    "documentation":    "gemini-3-flash",
+    "reflection":       "claude-sonnet-4"
+  },
+  "skillModelMap": {
+    "persistent-context": "gemini-3-flash",
+    "compact":            "gemini-3-flash",
+    "grill-me":           "claude-sonnet-4"
+  },
+  "rateLimitStrategy": "round-robin-by-family",
+  "families": ["claude", "gemini", "deepseek"]
+}

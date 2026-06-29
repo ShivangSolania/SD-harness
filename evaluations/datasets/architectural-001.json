@@ -1,0 +1,17 @@
+{
+  "id": "architectural-001",
+  "tier": "ARCHITECTURAL",
+  "title": "Swap Postgres for MongoDB as primary datastore",
+  "input": "Swap the primary datastore from Postgres to MongoDB. Keep the public API stable.",
+  "expected_clarifier_output": "<ARCHITECTURAL>\nobjective: migrate primary datastore from Postgres to MongoDB",
+  "expected_grill_me_questions": 3,
+  "expected_architect_decision": "either <APPROVE> or <REJECT> is acceptable; the test verifies the decision is grounded in the grill-me transcript",
+  "expected_files_touched_min": 5,
+  "expected_agents_invoked_min": [
+    "clarifier", "grill-me", "architect",
+    "researcher", "hermes-reasoner", "planner",
+    "coder", "reviewer", "security", "tester", "documentation"
+  ],
+  "expected_retries_max": 1,
+  "verifier": "npm run test:integration -- --grep datastore"
+}

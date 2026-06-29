@@ -1,0 +1,30 @@
+# Build artifacts
+node_modules
+package.json
+package-lock.json
+bun.lock
+tui.json
+
+# Harness runtime config (per-installation, do not commit)
+harness.jsonc
+harness.jsonc.*.tmp
+
+# Live credentials — NEVER commit
+antigravity-accounts.json
+antigravity-accounts.json.*.tmp
+antigravity-signature-cache.json
+antigravity-logs/
+
+# Themes (user-installed)
+themes
+
+# Sandboxed runtime state (regenerated per session)
+sandbox/experiments/.thought.md
+sandbox/temporary/*
+!sandbox/temporary/.gitkeep
+
+# Observability (rewritten on each run)
+observability/failures.json
+
+# Per-session retry budget
+memory/session/state.json

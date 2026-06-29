@@ -1,0 +1,14 @@
+{
+  "id": "feature-001",
+  "tier": "FEATURE",
+  "title": "Add /healthz endpoint",
+  "input": "Add a `/healthz` endpoint that returns service version + uptime as JSON.",
+  "expected_clarifier_output": "<FEATURE>\nobjective: add /healthz endpoint returning version + uptime",
+  "expected_files_touched": ["src/routes/healthz.ts"],
+  "expected_agents_invoked": [
+    "clarifier", "researcher", "hermes-reasoner", "planner",
+    "coder", "reviewer", "security", "tester", "documentation"
+  ],
+  "expected_retries": 0,
+  "verifier": "curl -sf http://localhost:8080/healthz | jq -e '.version and .uptime'"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Harness evaluation metrics",
+  "type": "object",
+  "required": ["framework_benchmarks", "session_telemetry_summary"],
+  "properties": {
+    "framework_benchmarks": {
+      "type": "object",
+      "description": "Targets the harness must hit on the golden eval datasets.",
+      "required": ["target_hit_rate", "surgical_patch_accuracy", "allowed_hallucination_index"],
+      "properties": {
+        "target_hit_rate":           { "type": "number", "minimum": 0, "maximum": 1 },
+        "surgical_patch_accuracy":   { "type": "number", "minimum": 0, "maximum": 1 },
+        "allowed_hallucination_index": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "session_telemetry_summary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sessionId", "tier", "durationMs", "retries", "outcome"],
+        "properties": {
+          "sessionId":   { "type": "string" },
+          "tier":        { "enum": ["ATOMIC", "FEATURE", "ARCHITECTURAL"] },
+          "durationMs":  { "type": "integer", "minimum": 0 },
+          "retries":     { "type": "object" },
+          "outcome":     { "enum": ["pass", "fail"] }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+// Harness configuration.
+// Copy to harness.jsonc and edit. harness.jsonc is gitignored.
+{
+  // Filesystem root for all harness-owned runtime state.
+  // Override with the HARNESS_HOME env var (env wins over this file).
+  "harnessHome": "~/.config/harness",
+
+  // Project working directory. Defaults to process.cwd().
+  "projectRoot": "./",
+
+  // Per-session retry budget tracker.
+  "sessionState": "~/.config/harness/memory/session/state.json",
+
+  // Cap context window before triggering skills/compact.
+  "compactThreshold": {
+    "contextPct": 50,
+    "toolOutputs": 5
+  },
+
+  // Evaluations & metrics.
+  "evaluations": {
+    "metricsFile": "~/.config/harness/evaluations/metrics.json",
+    "datasetsDir": "~/.config/harness/evaluations/datasets",
+    "reportsDir":  "~/.config/harness/evaluations/reports"
+  }
+}
