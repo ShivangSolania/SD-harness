@@ -12,12 +12,7 @@ unzip harness.zip -d ~/.config/   # creates ~/.config/harness/
 # 2. Copy the example config and edit if needed
 cp ~/.config/harness/harness.example.jsonc ~/.config/harness/harness.jsonc
 
-# 3. Copy the credentials template and fill in real values
-cp ~/.config/harness/antigravity-accounts.example.json \
-   ~/.config/harness/antigravity-accounts.json
-# edit ~/.config/harness/antigravity-accounts.json with your real OAuth refresh tokens
-
-# 4. (optional) override the harness root via env
+# 3. (optional) override the harness root via env
 export HARNESS_HOME=~/.config/harness
 ```
 
@@ -28,8 +23,6 @@ export HARNESS_HOME=~/.config/harness
 ├── AGENTS.md                      # root guardrails (immutable)
 ├── harness.jsonc                  # runtime config (gitignored)
 ├── harness.example.jsonc          # config template
-├── antigravity-accounts.json      # live credentials (gitignored)
-├── antigravity-accounts.example.json
 ├── .gitignore
 ├── agents/                        # persona files (12 agents)
 ├── commands/                      # slash commands (6)
@@ -38,8 +31,6 @@ export HARNESS_HOME=~/.config/harness
 │   ├── compact/
 │   └── grill-me/
 ├── workflows/                     # YAML workflows consumed by commands
-├── config/
-│   └── models.json                # agent → model routing table
 ├── knowledge/                     # long-lived reference docs
 │   ├── architecture/
 │   ├── best-practices/
@@ -119,24 +110,8 @@ Every gate has a hard retry budget of 1 (see `agents/orchestrator.md` Step 3). R
 
 ## Secrets hygiene
 
-* **NEVER** commit `antigravity-accounts.json`. It is gitignored.
-* The example file (`antigravity-accounts.example.json`) ships with `REPLACE_WITH_*` placeholders only.
 * The security agent scans every `<surgical_patch>` for secret-like strings (AWS keys, GitHub tokens, Google OAuth refresh tokens, Slack tokens, PEM blocks) and halts the loop on detection.
 * To extend the scanner, append patterns to `knowledge/best-practices/secret-patterns.md`.
-
-## Customizing the model routing
-
-Edit `config/models.json`:
-
-```json
-{
-  "agentModelMap": {
-    "coder":           "claude-sonnet-4",
-    "hermes-reasoner": "deepseek-ai/DeepSeek-R1-0528",
-    "clarifier":       "gemini-3-flash"
-  }
-}
-```
 
 The orchestrator refuses to start a run if any agent in the pipeline is unmapped.
 
