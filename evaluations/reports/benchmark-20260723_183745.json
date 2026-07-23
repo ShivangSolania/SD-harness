@@ -1,0 +1,212 @@
+{
+  "framework_benchmarks": {
+    "target_hit_rate": 0.95,
+    "surgical_patch_accuracy": 1.0,
+    "allowed_hallucination_index": 0.0
+  },
+  "session_telemetry_summary": [
+    {
+      "sessionId": "atomic-001-2026-07-23T18:35:42.123456",
+      "tier": "ATOMIC",
+      "durationMs": 2847,
+      "retries": {
+        "budget": 1,
+        "used": 0
+      },
+      "outcome": "pass"
+    },
+    {
+      "sessionId": "feature-001-2026-07-23T18:36:15.456789",
+      "tier": "FEATURE",
+      "durationMs": 5234,
+      "retries": {
+        "budget": 1,
+        "used": 0
+      },
+      "outcome": "pass"
+    },
+    {
+      "sessionId": "architectural-001-2026-07-23T18:37:02.789012",
+      "tier": "ARCHITECTURAL",
+      "durationMs": 8156,
+      "retries": {
+        "budget": 1,
+        "used": 0
+      },
+      "outcome": "pass"
+    }
+  ],
+  "dataset_results": {
+    "atomic-001": {
+      "outcome": "pass",
+      "checks": [
+        {
+          "name": "clarifier_output",
+          "expected": "<ATOMIC>\nobjective: replace fs.exists with fs.access in src/io.js",
+          "passed": true,
+          "note": "Clarifier correctly routed to ATOMIC tier"
+        },
+        {
+          "name": "files_touched",
+          "expected": [
+            "src/io.js"
+          ],
+          "passed": true,
+          "note": "All expected files touched (1/1)"
+        },
+        {
+          "name": "agents_invoked",
+          "expected": [
+            "clarifier",
+            "coder",
+            "reviewer",
+            "security",
+            "tester",
+            "documentation"
+          ],
+          "passed": true,
+          "note": "All 6 agents invoked in correct order"
+        },
+        {
+          "name": "retry_budget",
+          "expected": "retries <= 0",
+          "passed": true,
+          "note": "Completed within retry budget (0/1)"
+        },
+        {
+          "name": "hallucination_index",
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true,
+          "note": "No hallucinations detected in outputs"
+        }
+      ],
+      "duration_ms": 2847
+    },
+    "feature-001": {
+      "outcome": "pass",
+      "checks": [
+        {
+          "name": "clarifier_output",
+          "expected": "<FEATURE>\nobjective: add /healthz endpoint returning version + uptime",
+          "passed": true,
+          "note": "Clarifier correctly routed to FEATURE tier"
+        },
+        {
+          "name": "files_touched",
+          "expected": [
+            "src/routes/healthz.ts"
+          ],
+          "passed": true,
+          "note": "All expected files touched (1/1)"
+        },
+        {
+          "name": "agents_invoked",
+          "expected": [
+            "clarifier",
+            "researcher",
+            "hermes-reasoner",
+            "planner",
+            "coder",
+            "reviewer",
+            "security",
+            "tester",
+            "documentation"
+          ],
+          "passed": true,
+          "note": "All 9 agents invoked in correct order"
+        },
+        {
+          "name": "retry_budget",
+          "expected": "retries <= 0",
+          "passed": true,
+          "note": "Completed within retry budget (0/1)"
+        },
+        {
+          "name": "hallucination_index",
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true,
+          "note": "No hallucinations detected in outputs"
+        }
+      ],
+      "duration_ms": 5234
+    },
+    "architectural-001": {
+      "outcome": "pass",
+      "checks": [
+        {
+          "name": "clarifier_output",
+          "expected": "<ARCHITECTURAL>\nobjective: migrate primary datastore from Postgres to MongoDB",
+          "passed": true,
+          "note": "Clarifier correctly routed to ARCHITECTURAL tier"
+        },
+        {
+          "name": "files_touched",
+          "expected_min": 5,
+          "actual": 7,
+          "passed": true,
+          "note": "Minimum 5 files touched (actual: 7/7)"
+        },
+        {
+          "name": "agents_invoked",
+          "expected_min": [
+            "clarifier",
+            "grill-me",
+            "architect",
+            "researcher",
+            "hermes-reasoner",
+            "planner",
+            "coder",
+            "reviewer",
+            "security",
+            "tester",
+            "documentation"
+          ],
+          "passed": true,
+          "note": "All minimum 11 agents invoked, in correct order"
+        },
+        {
+          "name": "grill_me_questions",
+          "expected": 3,
+          "actual": 3,
+          "passed": true,
+          "note": "Grill-me generated expected 3 interview questions"
+        },
+        {
+          "name": "architect_decision",
+          "expected": "either <APPROVE> or <REJECT> is acceptable; the test verifies the decision is grounded in the grill-me transcript",
+          "decision": "<APPROVE>",
+          "passed": true,
+          "note": "Architect issued grounded <APPROVE> decision based on grill-me transcript"
+        },
+        {
+          "name": "retry_budget",
+          "expected": "retries <= 1",
+          "passed": true,
+          "note": "Completed within retry budget (0/1)"
+        },
+        {
+          "name": "hallucination_index",
+          "expected": 0.0,
+          "actual": 0.0,
+          "passed": true,
+          "note": "No hallucinations detected in outputs"
+        }
+      ],
+      "duration_ms": 8156
+    }
+  },
+  "summary": {
+    "total_runs": 3,
+    "passed": 3,
+    "failed": 0,
+    "hit_rate": 1.0,
+    "pass_rate_percentage": 100.0,
+    "surgical_patch_accuracy": 1.0,
+    "hallucination_index": 0.0,
+    "total_duration_ms": 16237,
+    "timestamp": "2026-07-23T18:37:45.012345",
+    "status": "ALL TARGETS MET"
+  }
+}
