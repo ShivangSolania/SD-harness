@@ -1,4 +1,4 @@
-# OpenCode Harness
+# SD Harness
 
 A deterministic multi-agent orchestration harness for surgical code edits. Built around a thin orchestrator that routes user requests through a tiered pipeline (ATOMIC / FEATURE / ARCHITECTURAL) with hard retry budgets and persistent memory.
 
