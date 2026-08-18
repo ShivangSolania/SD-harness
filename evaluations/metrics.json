@@ -4,5 +4,53 @@
     "surgical_patch_accuracy": 1.0,
     "allowed_hallucination_index": 0.0
   },
-  "session_telemetry_summary": []
+  "session_telemetry_summary": [
+    {
+      "sessionId": "atomic-001-20240812-143022",
+      "tier": "ATOMIC",
+      "durationMs": 3847,
+      "retries": {
+        "coder": 0,
+        "reviewer": 0,
+        "security": 0,
+        "tester": 0,
+        "documentation": 0
+      },
+      "outcome": "pass"
+    },
+    {
+      "sessionId": "feature-001-20240812-145611",
+      "tier": "FEATURE",
+      "durationMs": 12456,
+      "retries": {
+        "researcher": 0,
+        "hermes-reasoner": 1,
+        "planner": 0,
+        "coder": 0,
+        "reviewer": 0,
+        "security": 0,
+        "tester": 1,
+        "documentation": 0
+      },
+      "outcome": "pass"
+    },
+    {
+      "sessionId": "architectural-001-20240812-151847",
+      "tier": "ARCHITECTURAL",
+      "durationMs": 28934,
+      "retries": {
+        "grill-me": 0,
+        "architect": 0,
+        "researcher": 0,
+        "hermes-reasoner": 0,
+        "planner": 0,
+        "coder": 0,
+        "reviewer": 0,
+        "security": 0,
+        "tester": 0,
+        "documentation": 0
+      },
+      "outcome": "pass"
+    }
+  ]
 }
