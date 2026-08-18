@@ -13,7 +13,7 @@
 
   // Cap context window before triggering skills/compact.
   "compactThreshold": {
-    "contextPct": 50,
+    "contextPct": 70,
     "toolOutputs": 5
   },
 
@@ -22,5 +22,14 @@
     "metricsFile": "~/.config/harness/evaluations/metrics.json",
     "datasetsDir": "~/.config/harness/evaluations/datasets",
     "reportsDir":  "~/.config/harness/evaluations/reports"
+  },
+
+  // Wall-clock hard stops. If either limit fires the session is terminated
+  // and a trace is written to observability/failures.json.
+  // agentCallMs — max time allowed for a single call_agent() invocation.
+  // sessionMs   — max total time for the entire pipeline run.
+  "timeouts": {
+    "agentCallMs": 30000,
+    "sessionMs": 120000
   }
 }

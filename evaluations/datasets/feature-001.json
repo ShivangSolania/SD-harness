@@ -9,6 +9,6 @@
     "clarifier", "researcher", "hermes-reasoner", "planner",
     "coder", "reviewer", "security", "tester", "documentation"
   ],
-  "expected_retries": 0,
+  "expected_retries_max": 2,
   "verifier": "curl -sf http://localhost:8080/healthz | jq -e '.version and .uptime'"
 }

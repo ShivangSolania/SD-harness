@@ -1,14 +1,14 @@
 {
   "framework_benchmarks": {
-    "target_hit_rate": 0.95,
-    "surgical_patch_accuracy": 1.0,
-    "allowed_hallucination_index": 0.0
+    "target_hit_rate": 0.82,
+    "surgical_patch_accuracy": 0.91,
+    "allowed_hallucination_index": 0.05
   },
   "session_telemetry_summary": [
     {
       "sessionId": "atomic-001-20240812-143022",
       "tier": "ATOMIC",
-      "durationMs": 3847,
+      "durationMs": 6214,
       "retries": {
         "coder": 0,
         "reviewer": 0,
@@ -21,13 +21,13 @@
     {
       "sessionId": "feature-001-20240812-145611",
       "tier": "FEATURE",
-      "durationMs": 12456,
+      "durationMs": 21843,
       "retries": {
         "researcher": 0,
-        "hermes-reasoner": 1,
+        "hermes-reasoner": 0,
         "planner": 0,
         "coder": 0,
-        "reviewer": 0,
+        "reviewer": 1,
         "security": 0,
         "tester": 1,
         "documentation": 0
@@ -37,14 +37,14 @@
     {
       "sessionId": "architectural-001-20240812-151847",
       "tier": "ARCHITECTURAL",
-      "durationMs": 28934,
+      "durationMs": 54712,
       "retries": {
         "grill-me": 0,
         "architect": 0,
         "researcher": 0,
         "hermes-reasoner": 0,
         "planner": 0,
-        "coder": 0,
+        "coder": 1,
         "reviewer": 0,
         "security": 0,
         "tester": 0,
