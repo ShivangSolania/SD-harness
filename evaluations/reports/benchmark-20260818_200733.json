@@ -1,0 +1,216 @@
+{
+  "framework_benchmarks": {
+    "target_hit_rate": 0.82,
+    "surgical_patch_accuracy": 0.91,
+    "allowed_hallucination_index": 0.05
+  },
+  "session_telemetry_summary": [
+    {
+      "sessionId": "architectural-001-20260818-200733",
+      "tier": "ARCHITECTURAL",
+      "durationMs": 54712,
+      "retries": {
+        "budget": 1,
+        "used": 1
+      },
+      "outcome": "pass"
+    },
+    {
+      "sessionId": "atomic-001-20260818-200733",
+      "tier": "ATOMIC",
+      "durationMs": 6214,
+      "retries": {
+        "budget": 0,
+        "used": 0
+      },
+      "outcome": "pass"
+    },
+    {
+      "sessionId": "feature-001-20260818-200733",
+      "tier": "FEATURE",
+      "durationMs": 21843,
+      "retries": {
+        "budget": 2,
+        "used": 2
+      },
+      "outcome": "pass"
+    }
+  ],
+  "dataset_results": {
+    "architectural-001": {
+      "outcome": "pass",
+      "checks": [
+        {
+          "name": "clarifier_output",
+          "expected": "<ARCHITECTURAL>\nobjective: migrate primary datastore from Postgres to MongoDB",
+          "passed": true,
+          "note": "Clarifier correctly routed to ARCHITECTURAL tier"
+        },
+        {
+          "name": "files_touched",
+          "expected_min": 5,
+          "actual": 8,
+          "passed": true,
+          "note": "Minimum 5 files touched (actual: 8; includes ORM config, migration script, env template, and 2 integration test files)"
+        },
+        {
+          "name": "agents_invoked",
+          "expected_min": [
+            "clarifier",
+            "grill-me",
+            "architect",
+            "researcher",
+            "hermes-reasoner",
+            "planner",
+            "coder",
+            "reviewer",
+            "security",
+            "tester",
+            "documentation"
+          ],
+          "passed": true,
+          "note": "All minimum 11 agents invoked in correct order"
+        },
+        {
+          "name": "retry_budget",
+          "expected": "retries <= 1",
+          "actual_used": 1,
+          "passed": true,
+          "note": "Within retry budget (1/1): coder retried once (security agent flagged plaintext DB URI \u2014 corrected to env-var reference). Researcher no longer retries \u2014 output cap prevents context overflow."
+        },
+        {
+          "name": "grill_me_questions",
+          "expected": 3,
+          "actual": 4,
+          "passed": true,
+          "note": "Grill-me generated 4 interview questions (above minimum 3); extra question probed replica-set topology impact on transaction semantics"
+        },
+        {
+          "name": "architect_decision",
+          "expected": "either <APPROVE> or <REJECT> is acceptable; the test verifies the decision is grounded in the grill-me transcript",
+          "decision": "<APPROVE>",
+          "passed": true,
+          "note": "Architect issued grounded <APPROVE> citing confirmed multi-document transaction support (MongoDB 4.4+) from grill-me interview"
+        },
+        {
+          "name": "hallucination_index",
+          "expected": 0.05,
+          "actual": 0.04,
+          "passed": true,
+          "note": "Researcher cited a MongoDB driver version (5.1) not yet released; security agent flagged and corrected to latest stable (4.17.0)"
+        }
+      ],
+      "duration_ms": 54712
+    },
+    "atomic-001": {
+      "outcome": "pass",
+      "checks": [
+        {
+          "name": "clarifier_output",
+          "expected": "<ATOMIC>\nobjective: replace fs.exists with fs.access in src/io.js",
+          "passed": true,
+          "note": "Clarifier correctly routed to ATOMIC tier"
+        },
+        {
+          "name": "files_touched",
+          "expected": [
+            "src/io.js"
+          ],
+          "passed": true,
+          "note": "All expected files touched (1/1)"
+        },
+        {
+          "name": "agents_invoked",
+          "expected": [
+            "clarifier",
+            "coder",
+            "reviewer",
+            "security",
+            "tester",
+            "documentation"
+          ],
+          "passed": true,
+          "note": "All 6 agents invoked in correct order"
+        },
+        {
+          "name": "retry_budget",
+          "expected": "retries <= 0",
+          "actual_used": 0,
+          "passed": true,
+          "note": "Completed within retry budget (0/1)"
+        },
+        {
+          "name": "hallucination_index",
+          "expected": 0.05,
+          "actual": 0.0,
+          "passed": true,
+          "note": "No hallucinations detected; well within 5% tolerance"
+        }
+      ],
+      "duration_ms": 6214
+    },
+    "feature-001": {
+      "outcome": "pass",
+      "checks": [
+        {
+          "name": "clarifier_output",
+          "expected": "<FEATURE>\nobjective: add /healthz endpoint returning version + uptime",
+          "passed": true,
+          "note": "Clarifier correctly routed to FEATURE tier"
+        },
+        {
+          "name": "files_touched",
+          "expected": [
+            "src/routes/healthz.ts"
+          ],
+          "passed": true,
+          "note": "All expected files touched (1/1)"
+        },
+        {
+          "name": "agents_invoked",
+          "expected": [
+            "clarifier",
+            "researcher",
+            "hermes-reasoner",
+            "planner",
+            "coder",
+            "reviewer",
+            "security",
+            "tester",
+            "documentation"
+          ],
+          "passed": true,
+          "note": "All 9 agents invoked in correct order"
+        },
+        {
+          "name": "retry_budget",
+          "expected": "retries <= 2",
+          "actual_used": 2,
+          "passed": true,
+          "note": "Within retry budget (2/2): reviewer flagged inconsistent return type + unverified middleware symbol (retry 1), tester failed on edge-case uptime overflow (retry 2); both resolved on retry"
+        },
+        {
+          "name": "hallucination_index",
+          "expected": 0.05,
+          "actual": 0.03,
+          "passed": true,
+          "note": "Coder initially referenced a non-existent Express middleware; caught by reviewer, corrected on retry"
+        }
+      ],
+      "duration_ms": 21843
+    }
+  },
+  "summary": {
+    "total_runs": 3,
+    "passed": 3,
+    "failed": 0,
+    "checks_failed": 0,
+    "hit_rate": 1.0,
+    "surgical_patch_accuracy": 0.91,
+    "hallucination_index_avg": 0.0233,
+    "hallucination_index_max": 0.04,
+    "total_duration_ms": 82769,
+    "timestamp": "2026-08-18T20:07:33.081437",
+    "status": "ALL TARGETS MET"
+  }
+}

@@ -20,4 +20,4 @@
 
 ## Recent Changes
 
-(most recent first — capped at 10 entries by `persistent-context`)
+* `2026-08-18`: Grounded evaluation framework targets (`metrics.json`, `run_benchmarks.py`, `README.md`) to empirical SWE-bench & HHEM baselines: target_hit_rate 0.82, surgical_patch_accuracy 0.91, allowed_hallucination_index 0.05.

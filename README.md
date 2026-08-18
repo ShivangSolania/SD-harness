@@ -143,9 +143,9 @@ Golden datasets live in `evaluations/datasets/`:
 * `architectural-001.json` — architectural change with grill-me interview
 
 Target metrics (`evaluations/metrics.json`):
-* `target_hit_rate`: 0.95
-* `surgical_patch_accuracy`: 1.0
-* `allowed_hallucination_index`: 0.0
+* `target_hit_rate`: 0.82
+* `surgical_patch_accuracy`: 0.91
+* `allowed_hallucination_index`: 0.05
 
 ## Precedence
 

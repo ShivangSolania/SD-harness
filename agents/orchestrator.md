@@ -66,13 +66,15 @@ These are the only retry/stop rules. Follow them literally. Before each retry, i
 | `reviewer` flags issues | Return issues to `coder`, re-run `coder` → `reviewer`. | 1 |
 | `security` flags issues | Return issues to `coder`, re-run `coder` → `security`. | 1 |
 | `tester` fails | Invoke `reflection` → retry `coder` → `tester` for that step. | 1 |
+| Agent call exceeds `timeouts.agentCallMs` | Treat as failure. Write timeout trace to `observability/failures.json`. Do not retry. Stop session. | 0 |
+| Session wall-clock exceeds `timeouts.sessionMs` | Hard stop. Write timeout trace to `observability/failures.json`. Report to user. | 0 |
 
 After max retries, stop and report the failure to the user. Do not loop indefinitely.
 
 ## Step 4 — Terminal (Always Run on Success)
 
 1. `persistent-context` — update memory, decisions, architecture.
-2. `compact` — trigger only if context > 50% capacity or tool outputs > 5 (per `compactThreshold` in `harness.jsonc`).
+2. `compact` — trigger only if context > 70% capacity or tool outputs > 5 (per `compactThreshold` in `harness.jsonc`).
 
 ## Rules
 
@@ -81,3 +83,4 @@ After max retries, stop and report the failure to the user. Do not loop indefini
 - Do not add commentary between agent invocations — just invoke the next agent.
 - If an agent's output is needed by the next agent, pass it directly via `forwarded_context`.
 - On any unrecoverable failure, write the failure trace to `observability/failures.json` before stopping.
+- Read `timeouts.agentCallMs` and `timeouts.sessionMs` from `harness.jsonc` at Step 0. Start a session-level wall-clock at Step 0. Pass the per-agent deadline to each `call_agent` invocation.
